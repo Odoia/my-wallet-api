@@ -1,3 +1,3 @@
 # my-wallet
 
-![](https://github.com/Odoia/my-wallet/blob/main/my-wallet.pdf)
+![](https://github.com/Odoia/my-wallet/blob/main/my-wallet.png)
