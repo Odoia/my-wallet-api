@@ -21,4 +21,4 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+* ![project mid map](https://github.com/Odoia/my-wallet-api/blob/main/my-wallet.png)
