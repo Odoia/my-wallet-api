@@ -11,7 +11,7 @@ describe '::Api::V1::UserController', type: :request do
   context 'When showing a specific user' do
     context 'When use a valid id' do
       context 'When use a GET url' do
-        it 'must be return status 201' do
+        it 'must be return status 200' do
           user = FactoryBot.create(:user)
           get "/api/v1/user/#{user.id}", headers: { 'ACCEPT' => 'application/json' }
           expect(body['status']).to eq 200
