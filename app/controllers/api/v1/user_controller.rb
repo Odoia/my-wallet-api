@@ -13,6 +13,18 @@ module Api
         end
       end
 
+      def show
+        return error_handler if params[:id].blank?
+
+        user = User.find_by(id: params['id'])
+
+        if user.nil?
+          error_handler(status: 404)
+        else
+          render status: 200, json: { data: user, status: 200 }
+        end
+      end
+
       private
 
       def user_params

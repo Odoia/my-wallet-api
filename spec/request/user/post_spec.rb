@@ -10,7 +10,7 @@ describe '::Api::V1::UserController', type: :request do
   let(:body) { JSON.parse response.body }
 
   context 'When create a user' do
-    context 'Whe use a valid params' do
+    context 'When use a valid params' do
       context 'When use a POST url' do
         let(:params) { { 'user': { 'name': 'user name' } } }
 
