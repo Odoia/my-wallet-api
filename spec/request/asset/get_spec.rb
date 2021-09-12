@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe '::Api::V1::ActiveController', type: :request do
+describe '::Api::V1::AssetController', type: :request do
 
   before do
     I18n.default_locale = :en
@@ -9,13 +9,13 @@ describe '::Api::V1::ActiveController', type: :request do
   let(:body) { JSON.parse response.body }
 
   context '#GET' do
-    context 'When showing a specific active' do
+    context 'When showing a specific asset' do
       context 'When use a valid id' do
         it 'must be return status 200' do
-          active = FactoryBot.create(:active)
-          get "/api/v1/active/#{active.id}", headers: { 'ACCEPT' => 'application/json' }
+          asset = FactoryBot.create(:asset)
+          get "/api/v1/asset/#{asset.id}", headers: { 'ACCEPT' => 'application/json' }
           expect(body['status']).to eq 200
-          expect(body['data']['code']).to eq active.code
+          expect(body['data']['code']).to eq asset.code
         end
       end
     end
@@ -23,7 +23,7 @@ describe '::Api::V1::ActiveController', type: :request do
     context 'When use a invalid id' do
       context 'When use a body without user' do
         it 'must be return status 404' do
-          get '/api/v1/active/1', headers: { 'ACCEPT' => 'application/json' }
+          get '/api/v1/asset/1', headers: { 'ACCEPT' => 'application/json' }
           expect(body['status']).to eq 404
         end
       end
