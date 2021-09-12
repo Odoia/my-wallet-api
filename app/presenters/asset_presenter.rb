@@ -1,5 +1,5 @@
-class ActivePresenter
-  attr_reader :id, :name, :created_at
+class AssetPresenter
+  attr_reader :id, :code, :description, :source, :segment, :company_name, :national_registry, :asset_type, :created_at
 
   def initialize(attrs)
     @id                 = attrs[:id]
@@ -9,7 +9,7 @@ class ActivePresenter
     @segment            = attrs[:segment] 
     @company_name       = attrs[:company_name]
     @national_registry  = attrs[ :national_registry]
-    @active_type        = attrs[:active_type]
+    @asset_type         = attrs[:asset_type]
     @created_at         = attrs[:created_at]
   end
 end

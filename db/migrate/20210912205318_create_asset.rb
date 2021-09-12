@@ -1,8 +1,8 @@
-class CreateActive < ActiveRecord::Migration[6.1]
+class CreateAsset < ActiveRecord::Migration[6.1]
   def change
-    create_table :actives do |t|
+    create_table :assets do |t|
       t.string :code, :description, :source, :segment, :company_name, :national_registry
-      t.integer :active_type
+      t.integer :asset_type
 
       t.timestamps
     end
