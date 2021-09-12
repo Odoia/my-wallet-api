@@ -13,6 +13,19 @@ module Api
         end
       end
 
+      def show
+
+        return error_handler if params[:id].blank?
+
+        wallet = Wallet.find_by(id: params['id'], status: 1)
+
+        if wallet.nil?
+          error_handler(status: 404)
+        else
+          render status: 200, json: { data: wallet, status: 200 }
+        end
+      end
+
       private
 
       def wallet_params
