@@ -3,7 +3,7 @@ module FinancialTransactionServices
     def initialize(params:)
       @asset            = params[:asset]
       @wallet           = params[:wallet]
-      @financial_type   = params[:financial_type]
+      @financial_type   = params[:financial_type].to_i
       @quantity         = params[:quantity]
       @amount           = params[:amount]
       @tax              = params[:tax]

@@ -7,26 +7,37 @@ describe ::Wallet, type: :model do
   end
 
   let(:user) { FactoryBot.create(:user) }
-
-  context 'When create a valid user' do
-    it 'should be return a created user' do
-
-      valid_wallet = Wallet.new(
-        name: Faker::Name.name,
-        description: Faker::Lorem.characters(number: 10),
-        status: 1,
-        user_id: user.id
-      )
-
-      expect(valid_wallet).to be_valid
-    end
+  let(:wallet) do
+    described_class.new(
+      name: Faker::Name.name,
+      description: Faker::Lorem.characters(number: 10),
+      status: status,
+      user_id: user.id
+    )
   end
 
-  context 'When create a new user user' do
-    context 'When create a invalid user' do
-      it 'should be return a error' do
-        invalid_user = Wallet.new(name: nil)
-        expect(invalid_user).not_to be_valid
+  context 'When use a valid params' do
+    context 'When create a new wallet with a valid user' do
+      let(:status) { 0 }
+      it 'should be return a created a wallet with inactive status' do
+        expect(wallet).to be_valid
+      end
+    end
+
+    context 'When use a invalid params' do
+      context 'When create a invalid user' do
+        let(:status) {}
+        it 'should be return a error' do
+          expect(wallet).not_to be_valid
+        end
+      end
+
+      context 'When verify a wallet status enum' do
+        it 'must retur all wallet status' do
+          enum = { inactive: 0, active: 1}
+          result = described_class.statuses.symbolize_keys
+          expect(result).to eq(enum)
+        end
       end
     end
   end

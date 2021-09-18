@@ -3,7 +3,7 @@ module WalletServices
     def initialize(params:)
       @name         = params[:name]
       @description  = params[:description]
-      @status       = params[:status]
+      @status       = params[:status].to_i
       @user         = params[:user]
     end
 

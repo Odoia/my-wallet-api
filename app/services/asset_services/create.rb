@@ -7,7 +7,7 @@ module AssetServices
       @segment            = params[:segment]
       @company_name       = params[:company_name]
       @national_registry  = params[:national_registry]
-      @asset_type         = params[:asset_type]
+      @asset_type         = params[:asset_type].to_i
     end
 
     def call
