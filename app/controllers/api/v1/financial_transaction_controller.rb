@@ -9,19 +9,19 @@ module Api
         if result.id.nil?
           error_handler(errors: result.errors, status: 404)
         else
-          render status: 201, json: { data: financial_transaction_presenter(result), status: 201 }
+          render status: 201, json: { data: result, status: 201 }
         end
       end
 
       def show
         return error_handler if params[:id].blank?
 
-        financial_transaction = FinancialTransaction.find_by(id: params['id'])
+        financial_transaction = show_financial_transaction
 
         if financial_transaction.nil?
           error_handler(status: 404)
         else
-          render status: 200, json: { data: financial_transaction, status: 200 }
+          render status: 200, json: { data: show_financial_transaction, status: 200 }
         end
       end
 
@@ -42,8 +42,8 @@ module Api
         ::FinancialTransactionServices::Create.new(params: financial_transaction_params).call
       end
 
-      def financial_transaction_presenter(result)
-        ::FinancialTransactionPresenter.new(result)
+      def show_financial_transaction
+        ::FinancialTransactionServices::ShowById.new(id: params[:id]).call
       end
     end
   end
