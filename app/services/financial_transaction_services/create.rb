@@ -11,7 +11,7 @@ module FinancialTransactionServices
     end
 
     def call
-      financial_transaction_create
+      base_presenter(financial_transaction_create)
     end
 
     private
@@ -29,6 +29,10 @@ module FinancialTransactionServices
         ft.transaction_date = transaction_date
         ft.save
       end
+    end
+
+    def base_presenter(result)
+      ::FinancialTransactionPresenters::Base.new(result)
     end
   end
 end
