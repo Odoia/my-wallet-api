@@ -3,7 +3,7 @@ module AssetServices
     def initialize(params:)
       @code               = params[:code]
       @description        = params[:description]
-      @source             = params[:source]
+      @source             = params[:source].to_i
       @segment            = params[:segment]
       @company_name       = params[:company_name]
       @national_registry  = params[:national_registry]

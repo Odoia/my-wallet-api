@@ -1,7 +1,6 @@
 module Api
   module V1
     class AssetController < ApplicationController
-      include ErrorSerializer
       before_action :asset_params, only: [:create]
 
       def create

@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   post 'api/v1/user' => 'api/v1/user#create'
   get 'api/v1/user/:id' => 'api/v1/user#show'
 
-  post 'api/v1/wallet' => 'api/v1/wallet#create'
-  get 'api/v1/wallet/:id' => 'api/v1/wallet#show'
+  post 'api/v1/wallets' => 'api/v1/wallet#create'
+  get 'api/v1/wallets/:id' => 'api/v1/wallet#show'
+  get 'api/v1/wallets/:id/details' => 'api/v1/wallet#details'
 
   post 'api/v1/asset' => 'api/v1/asset#create'
   get 'api/v1/asset/:id' => 'api/v1/asset#show'

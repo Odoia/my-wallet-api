@@ -1,7 +1,6 @@
 module Api
   module V1
     class UserController < ApplicationController
-      include ErrorSerializer
       before_action :user_params, only: [:create]
 
       def create

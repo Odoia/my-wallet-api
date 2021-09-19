@@ -14,7 +14,7 @@ describe '::Api::V1::WalletController', type: :request do
         context 'When use a active wallet' do
           it 'must be return status 200' do
             wallet = FactoryBot.create(:active_wallet)
-            get "/api/v1/wallet/#{wallet.id}", headers: { 'ACCEPT' => 'application/json' }
+            get "/api/v1/wallets/#{wallet.id}", headers: { 'ACCEPT' => 'application/json' }
             expect(body['status']).to eq 200
             expect(body['data']['name']).to eq wallet.name
           end
@@ -23,7 +23,7 @@ describe '::Api::V1::WalletController', type: :request do
         context 'When use a inactive wallet' do
           it 'must be return status 404' do
             wallet = FactoryBot.create(:inactive_wallet)
-            get "/api/v1/wallet/#{wallet.id}", headers: { 'ACCEPT' => 'application/json' }
+            get "/api/v1/wallets/#{wallet.id}", headers: { 'ACCEPT' => 'application/json' }
             expect(body['status']).to eq 404
           end
         end
@@ -33,9 +33,19 @@ describe '::Api::V1::WalletController', type: :request do
     context 'When use a invalid id' do
       context 'When use a body without user' do
         it 'must be return status 404' do
-          get '/api/v1/wallet/1', headers: { 'ACCEPT' => 'application/json' }
+          get '/api/v1/wallets/1', headers: { 'ACCEPT' => 'application/json' }
           expect(body['status']).to eq 404
         end
+      end
+    end
+
+    context 'When showing a wallet detail' do
+      it 'mut return an details' do
+        wallet = FactoryBot.create(:active_wallet)
+        FactoryBot.create(:financial_transaction, wallet: wallet)
+        get "/api/v1/wallets/#{wallet.id}/details", headers: { 'ACCEPT' => 'application/json' }
+
+          expect(body['status']).to eq 404
       end
     end
   end

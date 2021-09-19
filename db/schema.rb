@@ -15,11 +15,11 @@ ActiveRecord::Schema.define(version: 2021_09_12_205318) do
   create_table "assets", force: :cascade do |t|
     t.string "code"
     t.string "description"
-    t.string "source"
     t.string "segment"
     t.string "company_name"
     t.string "national_registry"
     t.integer "asset_type"
+    t.integer "source"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2021_09_12_205318) do
     t.string "name"
     t.string "description"
     t.integer "status"
+    t.json "distribution", default: "{}", null: false
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

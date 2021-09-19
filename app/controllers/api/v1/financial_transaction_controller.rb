@@ -1,11 +1,11 @@
 module Api
   module V1
     class FinancialTransactionController < ApplicationController
-      include ErrorSerializer
       before_action :financial_transaction_params, only: [:create]
 
       def create
         result = create_financial_transaction
+
         if result.id.nil?
           error_handler(errors: result.errors, status: 404)
         else

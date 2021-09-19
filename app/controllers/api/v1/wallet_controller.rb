@@ -1,7 +1,6 @@
 module Api
   module V1
     class WalletController < ApplicationController
-      include ErrorSerializer
       before_action :wallet_params, only: [:create]
 
       def create
@@ -14,7 +13,6 @@ module Api
       end
 
       def show
-
         return error_handler if params[:id].blank?
 
         wallet = Wallet.find_by(id: params['id'], status: 1)
@@ -26,12 +24,20 @@ module Api
         end
       end
 
+      def details
+        return error_handler if params[:id].blank?
+
+        detailed_wallet(params['id'])
+      end
+
       private
 
       def wallet_params
         return error_handler if params[:wallet].blank?
 
-        params.require(:wallet).permit(:name, :description, :status, :user)
+        params.require(:wallet).permit(:name, :description, :status, :user).tap do |permit_list|
+          permit_list[:distribution] = params[:wallet][:distribution]
+        end
       end
 
       def error_handler(errors: nil, status: 400)
@@ -40,6 +46,10 @@ module Api
 
       def create_wallet
         ::WalletServices::Create.new(params: wallet_params).call
+      end
+
+      def detailed_wallet(id)
+        ::WalletServices::DetailedWallet.new(id: id).call
       end
 
       def wallet_presenter(result)

@@ -11,7 +11,10 @@ module FinancialTransactionServices
     end
 
     def call
-      base_presenter(financial_transaction_create)
+      result = financial_transaction_create
+      return result if result.errors
+
+      base_presenter(result)
     end
 
     private

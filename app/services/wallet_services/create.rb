@@ -5,6 +5,7 @@ module WalletServices
       @description  = params[:description]
       @status       = params[:status].to_i
       @user         = params[:user]
+      @distribution = params[:distribution]
     end
 
     def call
@@ -13,7 +14,7 @@ module WalletServices
 
     private
 
-    attr_reader :name, :description, :status, :user
+    attr_reader :name, :description, :status, :user, :distribution
 
     def wallet_create
       ::Wallet.new.tap do |w|
@@ -21,6 +22,7 @@ module WalletServices
         w.description = description
         w.status = status
         w.user_id = user
+        w.distribution = distribution
         w.save
       end
     end

@@ -1,6 +1,6 @@
 module FinancialTransactionPresenters
   class Base
-    attr_reader :asset, :wallet, :financial_type, :quantity, :amount, :tax, :transaction_date
+    attr_reader :id, :asset, :wallet, :financial_type, :quantity, :amount, :tax, :transaction_date
 
     def initialize(attrs)
       @id               = attrs[:id]

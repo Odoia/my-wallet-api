@@ -38,7 +38,7 @@ describe ::FinancialTransaction, type: :model do
 
     context 'When verify a financial transaction enum' do
       it 'must retur all financial types' do
-        transaction_enum = { sell: 0, buy: 1}
+        transaction_enum = { sell: 0, buy: 1 }
         result = described_class.financial_types.symbolize_keys
         expect(result).to eq(transaction_enum)
       end

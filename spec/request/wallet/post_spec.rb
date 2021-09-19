@@ -4,7 +4,7 @@ describe '::Api::V1::WalletController', type: :request do
 
   before do
     I18n.default_locale = :en
-    post '/api/v1/wallet', params: params, headers: { 'ACCEPT' => 'application/json' }
+    post '/api/v1/wallets', params: params, headers: { 'ACCEPT' => 'application/json' }
   end
 
   let(:body) { JSON.parse response.body }
@@ -20,7 +20,23 @@ describe '::Api::V1::WalletController', type: :request do
               'name': 'wallet name',
               'description': 'wallet description',
               'status': 1,
-              'user': user.id
+              'user': user.id,
+              'distribution': {
+                action: {
+                  'total': 0.5,
+                  'sources': {
+                    BR: 0.5,
+                    US: 0.5
+                  }
+                },
+                exchange_traded_fund: {
+                  'total': 0.5,
+                  'sources': {
+                    BR: 0.7,
+                    US: 0.3
+                  }
+                }
+              }
             }
           }
         end

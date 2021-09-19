@@ -11,7 +11,7 @@ describe ::Asset, type: :model do
     described_class.new(
       code: 'code',
       description: 'description',
-      source: 'source',
+      source: 0,
       segment: 'segment',
       company_name: 'company_name',
       national_registry: 'national_registry',
@@ -34,10 +34,16 @@ describe ::Asset, type: :model do
     end
 
     context 'When verify a asset enum' do
-      it 'must retur all asset enuns' do
-        asset_enum = { real_state_fund: 0, action: 1, cryptocurrency: 2, exchange_traded_fund: 3 } 
-        result = described_class.asset_types.symbolize_keys
-        expect(result).to eq(asset_enum)
+      it 'must return asset types ' do
+        asset_types_expect = { real_state_fund: 0, action: 1, cryptocurrency: 2, exchange_traded_fund: 3 } 
+        asset_types = described_class.asset_types.symbolize_keys
+        expect(asset_types).to eq(asset_types_expect)
+      end
+
+      it 'must return asset sources ' do
+        asset_source_expect = { BR: 0, US: 1 } 
+        asset_source = described_class.sources.symbolize_keys
+        expect(asset_source).to eq(asset_source_expect)
       end
     end
   end

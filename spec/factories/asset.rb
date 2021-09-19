@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :asset, class: '::Asset' do
     code { 'code' }
     description { 'description' }
-    source { 'source' }
+    source { Asset.sources[:BR] }
     segment { 'segment' }
     company_name { 'company_name' }
     national_registry { 'national_registry' }
@@ -13,7 +13,7 @@ FactoryBot.define do
     crypto = Faker::CryptoCoin.coin_hash
     code { crypto[:acronym] } 
     description { crypto[:name] }
-    source { 'EUA' }
+    source { Asset.sources[:US] }
     segment { 'Crypto Coin' }
     company_name { 'company_name_crypto' }
     national_registry { 'national_registry' }
