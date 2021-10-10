@@ -8,4 +8,14 @@ FactoryBot.define do
     tax { 0.01 }
     transaction_date { Date.today }
   end
+
+  factory :financial_transaction_sell, class: '::FinancialTransaction' do
+    asset { FactoryBot.create(:asset) }
+    wallet { FactoryBot.create(:active_wallet) }
+    financial_type { 0 }
+    quantity { 50 }
+    amount { 10.00 }
+    tax { 0.01 }
+    transaction_date { Date.today }
+  end
 end

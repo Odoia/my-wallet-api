@@ -6,7 +6,7 @@ describe '::Api::V1::WalletController', type: :request do
     I18n.default_locale = :en
   end
 
-  let(:body) { JSON.parse response.body }
+  let(:body) { JSON.parse(response.body) }
 
   context '#GET' do
     context 'When showing a specific wallet' do
@@ -42,9 +42,20 @@ describe '::Api::V1::WalletController', type: :request do
     context 'When showing a wallet detail' do
       it 'mut return an details' do
         wallet = FactoryBot.create(:active_wallet)
+        asset = FactoryBot.create(:asset, code: 'ivvb11', source: Asset.sources[:US])
+        asset2 = FactoryBot.create(:asset, code: 'bova11', source: Asset.sources[:BR])
         FactoryBot.create(:financial_transaction, wallet: wallet)
+        FactoryBot.create(:financial_transaction, wallet: wallet)
+        FactoryBot.create(:financial_transaction, wallet: wallet)
+        FactoryBot.create(:financial_transaction, wallet: wallet)
+        FactoryBot.create(:financial_transaction, wallet: wallet)
+        FactoryBot.create(:financial_transaction, wallet: wallet)
+        FactoryBot.create(:financial_transaction, wallet: wallet, asset: asset2)
+        FactoryBot.create(:financial_transaction, wallet: wallet, asset: asset)
+        FactoryBot.create(:financial_transaction, wallet: wallet, asset: asset)
+        FactoryBot.create(:financial_transaction, wallet: wallet, asset: asset)
         get "/api/v1/wallets/#{wallet.id}/details", headers: { 'ACCEPT' => 'application/json' }
-
+require 'pry'; binding.pry
           expect(body['status']).to eq 404
       end
     end

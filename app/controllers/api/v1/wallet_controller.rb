@@ -27,7 +27,13 @@ module Api
       def details
         return error_handler if params[:id].blank?
 
-        detailed_wallet(params['id'])
+        result = detailed_wallet(params['id'])
+
+        if result.nil?
+          error_handler(status: 404)
+        else
+          render status: 200, json: { data: result, status: 200 }
+        end
       end
 
       private
