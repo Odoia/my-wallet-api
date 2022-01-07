@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2021_09_12_205318) do
     t.string "company_name"
     t.string "national_registry"
     t.integer "asset_type"
+    t.datetime "deleted_at", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -32,6 +33,7 @@ ActiveRecord::Schema.define(version: 2021_09_12_205318) do
     t.decimal "amount", precision: 8, scale: 2
     t.decimal "tax", precision: 8, scale: 2
     t.datetime "transaction_date"
+    t.datetime "deleted_at", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["asset_id"], name: "index_financial_transactions_on_asset_id"
@@ -40,6 +42,7 @@ ActiveRecord::Schema.define(version: 2021_09_12_205318) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
+    t.datetime "deleted_at", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -49,6 +52,7 @@ ActiveRecord::Schema.define(version: 2021_09_12_205318) do
     t.string "description"
     t.integer "status"
     t.integer "user_id"
+    t.datetime "deleted_at", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_wallets_on_user_id"

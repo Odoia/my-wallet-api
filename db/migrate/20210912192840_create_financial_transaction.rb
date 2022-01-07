@@ -6,6 +6,7 @@ class CreateFinancialTransaction < ActiveRecord::Migration[6.1]
       t.decimal :amount, :tax, precision: 8, scale: 2
       t.datetime :transaction_date
 
+      t.datetime :deleted_at, limit: 6
       t.timestamps
     end
   end
