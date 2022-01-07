@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   post 'api/v1/wallet' => 'api/v1/wallet#create'
   get 'api/v1/wallet/:id' => 'api/v1/wallet#show'
+  delete 'api/v1/wallet/:id' => 'api/v1/wallet#delete'
 
   post 'api/v1/asset' => 'api/v1/asset#create'
   get 'api/v1/asset/:id' => 'api/v1/asset#show'
