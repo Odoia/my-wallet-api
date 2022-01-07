@@ -30,10 +30,10 @@ describe '::Api::V1::WalletController', type: :request do
     end
 
     context 'When use a wallet that doesnt exists' do
-        it 'must return status 404' do
-            delete '/api/v1/wallet/1', headers: { 'ACCEPT' => 'application/json' }
-            expect(status).to eq 404
-        end
+      it 'must return status 404' do
+          delete '/api/v1/wallet/1', headers: { 'ACCEPT' => 'application/json' }
+          expect(status).to eq 404
+      end
     end
   end
 end
