@@ -4,7 +4,7 @@ describe '::Api::V1::WalletController', type: :request do
 
   before do
     I18n.default_locale = :en
-    put "/api/v1/wallet/#{wallet.id}", headers: { 'ACCEPT' => 'application/json' }
+    put "/api/v1/wallet/#{wallet.id}",  params: params, headers: { 'ACCEPT' => 'application/json' }
   end
 
   let(:body) { JSON.parse response.body }
@@ -23,12 +23,12 @@ describe '::Api::V1::WalletController', type: :request do
         end
         
 
-        it 'must return status 201' do
-          expect(body['status']).to eq 201
+        it 'must return status 200' do
+          expect(body['status']).to eq 200
         end
 
         it 'must return wallet name' do
-          expect(body['data']['name']).to eq 'wallet name'
+          expect(body['data']['name']).to eq 'wallet updated'
         end
       end
 
