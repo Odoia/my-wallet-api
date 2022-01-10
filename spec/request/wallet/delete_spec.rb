@@ -24,6 +24,8 @@ describe '::Api::V1::WalletController', type: :request do
             wallet = FactoryBot.create(:inactive_wallet)
             delete "/api/v1/wallet/#{wallet.id}", headers: { 'ACCEPT' => 'application/json' }
             expect(status).to eq 200
+            updated_wallet = Wallet.find(wallet.id)
+            expect(updated_wallet.deleted_at).not_to be_nil
           end
         end
       end

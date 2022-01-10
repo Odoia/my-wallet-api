@@ -13,7 +13,7 @@ module WalletServices
     attr_reader :wallet
 
     def wallet_delete
-      wallet.delete
+      wallet.update(deleted_at: Time.now.utc)
     end
   end
 end
