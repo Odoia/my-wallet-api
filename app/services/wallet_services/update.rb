@@ -20,5 +20,4 @@ module WalletServices
         wallet
       end
     end
-  end
-  
+end
