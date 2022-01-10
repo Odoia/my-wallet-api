@@ -16,7 +16,7 @@ module Api
       def show
         return error_handler if params[:id].blank?
 
-        asset = Asset.find_by(id: params['id'])
+        asset = Asset.find_by(id: params['id'], deleted_at: nil)
 
         if asset.nil?
           error_handler(status: 404)

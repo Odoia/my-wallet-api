@@ -13,7 +13,7 @@ module FinancialTransactionServices
     attr_reader :id
 
     def financial_transaction_show
-      result = FinancialTransaction.find_by(id: id)
+      result = FinancialTransaction.find_by(id: id, deleted_at: nil)
 
       return nil if result.nil?
 

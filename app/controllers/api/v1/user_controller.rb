@@ -16,7 +16,7 @@ module Api
       def show
         return error_handler if params[:id].blank?
 
-        user = User.find_by(id: params['id'])
+        user = User.find_by(id: params['id'], deleted_at: nil)
 
         if user.nil?
           error_handler(status: 404)
