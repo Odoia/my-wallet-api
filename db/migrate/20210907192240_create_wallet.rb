@@ -5,6 +5,7 @@ class CreateWallet < ActiveRecord::Migration[6.1]
       t.integer :status
       t.references :user
 
+      t.datetime :deleted_at, limit: 6
       t.timestamps
     end
   end

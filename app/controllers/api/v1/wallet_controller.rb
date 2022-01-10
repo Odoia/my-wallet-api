@@ -16,7 +16,7 @@ module Api
       def show
         return error_handler if params[:id].blank?
 
-        wallet = Wallet.find_by(id: params['id'], status: 1)
+        wallet = Wallet.find_by(id: params['id'], status: 1, deleted_at: nil)
 
         if wallet.nil?
           error_handler(status: 404)
