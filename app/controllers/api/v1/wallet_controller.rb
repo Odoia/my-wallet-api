@@ -18,7 +18,7 @@ module Api
       def show
         return error_handler if params[:id].blank?
 
-        wallet = Wallet.find_by(id: params['id'], status: 1, deleted_at: nil)
+        wallet = Wallet.find_active_wallet_by(params[:id])
 
         if wallet.nil?
           error_handler(status: 404)
@@ -29,7 +29,7 @@ module Api
 
       def update
         return error_handler if params[:id].blank?
-        wallet = Wallet.find_by(id: params['id'], status: 1, deleted_at: nil)
+        wallet = Wallet.find_active_wallet_by(params[:id])
         
         if wallet.nil?
           error_handler(status: 404)
@@ -43,7 +43,7 @@ module Api
       def delete
         return error_handler if params[:id].blank?
 
-        wallet = Wallet.find_by(id: params['id'], status: 0)
+        wallet = Wallet.find_inactive_wallet_by(params['id'])
         
         if wallet.nil?
           error_handler(status:404)
