@@ -14,7 +14,6 @@ module Api
       end
 
       def show
-
         return error_handler if params[:id].blank?
 
         wallet = Wallet.find_by(id: params['id'], status: 1)
@@ -23,6 +22,19 @@ module Api
           error_handler(status: 404)
         else
           render status: 200, json: { data: wallet, status: 200 }
+        end
+      end
+
+      def delete
+        return error_handler if params[:id].blank?
+
+        wallet = Wallet.find_by(id: params['id'], status: 0)
+        
+        if wallet.nil?
+          error_handler(status:404)
+        else
+          delete_wallet(wallet)
+          render status: 200
         end
       end
 
@@ -40,6 +52,10 @@ module Api
 
       def create_wallet
         ::WalletServices::Create.new(params: wallet_params).call
+      end
+
+      def delete_wallet(wallet)
+        ::WalletServices::Delete.new(wallet).call
       end
 
       def wallet_presenter(result)
