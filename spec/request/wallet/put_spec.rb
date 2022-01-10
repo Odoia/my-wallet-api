@@ -21,7 +21,6 @@ describe '::Api::V1::WalletController', type: :request do
             }
           }
         end
-        
 
         it 'must return status 200' do
           expect(body['status']).to eq 200
