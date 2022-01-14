@@ -21,7 +21,7 @@ describe '::Api::V1::FinancialTransactionController', type: :request do
               'wallet': wallet.id,
               'financial_type': 1,
               'quantity': 10,
-              'amount': 0.50,
+              'unit_value': 0.50,
               'tax': 0,
               'transaction_date': Date.today
             }
@@ -42,7 +42,7 @@ describe '::Api::V1::FinancialTransactionController', type: :request do
             'wallet': wallet.id,
             'financial_type': 1,
             'quantity': 10,
-            'amount': 0.50,
+            'unit_value': 0.50,
             'tax': 0,
             'transaction_date': Date.today
           }
@@ -60,7 +60,7 @@ describe '::Api::V1::FinancialTransactionController', type: :request do
               'wallet': wallet.id,
               'financial_type': 1,
               'quantity': 10,
-              'amount': 0.50,
+              'unit_value': 0.50,
               'tax': 0,
               'transaction_date': Date.today
             }
@@ -81,7 +81,7 @@ describe '::Api::V1::FinancialTransactionController', type: :request do
               'asset': asset.id,
               'financial_type': 1,
               'quantity': 10,
-              'amount': 0.50,
+              'unit_value': 0.50,
               'tax': 0,
               'transaction_date': Date.today
             }

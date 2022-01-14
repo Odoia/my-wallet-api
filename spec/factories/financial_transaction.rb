@@ -4,7 +4,7 @@ FactoryBot.define do
     wallet { FactoryBot.create(:active_wallet) }
     financial_type { 1 }
     quantity { 50 }
-    amount { 10.00 }
+    unit_value { 10.00 }
     tax { 0.01 }
     transaction_date { Date.today }
   end

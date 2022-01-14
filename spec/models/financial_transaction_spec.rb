@@ -15,7 +15,7 @@ describe ::FinancialTransaction, type: :model do
       wallet_id: wallet.id,
       financial_type: type,
       quantity: 10,
-      amount: 0.50,
+      unit_value: 0.50,
       tax: 0,
       transaction_date: Date.today
     )

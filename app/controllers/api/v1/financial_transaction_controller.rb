@@ -31,7 +31,7 @@ module Api
         return error_handler if params[:financial_transaction].blank?
 
         params.require(:financial_transaction)
-              .permit(:asset, :wallet, :financial_type, :quantity, :amount, :tax, :transaction_date)
+              .permit(:asset, :wallet, :financial_type, :quantity, :unit_value, :tax, :transaction_date)
       end
 
       def error_handler(errors: nil, status: 400)
