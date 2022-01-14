@@ -1,6 +1,7 @@
 class Wallet < ApplicationRecord
   belongs_to :user, class_name: '::User'
   has_many :financial_transaction, class_name: '::FinancialTransaction', inverse_of: :wallet
+  has_and_belongs_to_many :asset, class_name: '::Asset'
 
   validates :name, :description, :status,  presence: true
 

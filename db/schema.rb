@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_12_205318) do
+ActiveRecord::Schema.define(version: 2022_01_14_161821) do
 
   create_table "assets", force: :cascade do |t|
     t.string "code"
@@ -30,13 +30,13 @@ ActiveRecord::Schema.define(version: 2021_09_12_205318) do
     t.integer "wallet_id"
     t.integer "financial_type"
     t.integer "quantity"
-    t.decimal "amount", precision: 8, scale: 2
+    t.decimal "unit_value", precision: 8, scale: 2
     t.decimal "tax", precision: 8, scale: 2
     t.datetime "transaction_date"
     t.datetime "deleted_at", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["asset_id"], name: "index_financial_transactions_on_asset_id"
+    t.index ["asset_id"], name: "index_financial_transactions_on_asset_id", unique: true
     t.index ["wallet_id"], name: "index_financial_transactions_on_wallet_id"
   end
 
@@ -58,4 +58,14 @@ ActiveRecord::Schema.define(version: 2021_09_12_205318) do
     t.index ["user_id"], name: "index_wallets_on_user_id"
   end
 
+  create_table "wallets_assets", id: false, force: :cascade do |t|
+    t.integer "wallet_id"
+    t.integer "asset_id"
+    t.index ["asset_id"], name: "index_wallets_assets_on_asset_id"
+    t.index ["wallet_id"], name: "index_wallets_assets_on_wallet_id"
+  end
+
+  add_foreign_key "financial_transactions", "assets"
+  add_foreign_key "financial_transactions", "wallets"
+  add_foreign_key "wallets", "users"
 end
