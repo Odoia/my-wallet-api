@@ -5,7 +5,7 @@ module FinancialTransactionServices
       @wallet           = params[:wallet]
       @financial_type   = params[:financial_type].to_i
       @quantity         = params[:quantity]
-      @amount           = params[:amount]
+      @unit_value           = params[:unit_value]
       @tax              = params[:tax]
       @transaction_date = params[:transaction_date]
     end
@@ -16,7 +16,7 @@ module FinancialTransactionServices
 
     private
 
-    attr_reader :asset, :wallet, :financial_type, :quantity, :amount, :tax, :transaction_date
+    attr_reader :asset, :wallet, :financial_type, :quantity, :unit_value, :tax, :transaction_date
 
     def financial_transaction_create
       ::FinancialTransaction.new.tap do |ft|
@@ -24,7 +24,7 @@ module FinancialTransactionServices
         ft.wallet_id = wallet
         ft.financial_type = financial_type
         ft.quantity = quantity
-        ft.amount = amount
+        ft.unit_value = unit_value
         ft.tax = tax
         ft.transaction_date = transaction_date
         ft.save
